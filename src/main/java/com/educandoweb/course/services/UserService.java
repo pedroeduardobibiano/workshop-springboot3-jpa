@@ -2,7 +2,6 @@ package com.educandoweb.course.services;
 
 import com.educandoweb.course.entities.User;
 import com.educandoweb.course.repositories.UserRepository;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +22,9 @@ public class UserService {
     public User findById(Long id) {
         Optional<User> obj = repository.findById(id);
         return obj.orElseThrow();
+    }
+
+    public User insert(User obj){
+        return repository.save(obj);
     }
 }
