@@ -1,5 +1,6 @@
 package com.educandoweb.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -14,9 +15,10 @@ public class Payment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ind;
+    private Long id;
     private Instant moment;
 
+    @JsonIgnore
     @OneToOne
     @MapsId
     private Order order;
@@ -24,18 +26,18 @@ public class Payment implements Serializable {
     public Payment() {
     }
 
-    public Payment(Long ind, Instant moment, Order order) {
-        this.ind = ind;
+    public Payment(Long id, Instant moment, Order order) {
+        this.id = id;
         this.moment = moment;
         this.order = order;
     }
 
-    public Long getInd() {
-        return ind;
+    public Long getId() {
+        return id;
     }
 
-    public void setInd(Long ind) {
-        this.ind = ind;
+    public void setInd(Long id) {
+        this.id = id;
     }
 
     public Instant getMoment() {
@@ -59,11 +61,11 @@ public class Payment implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Payment payment = (Payment) o;
-        return Objects.equals(ind, payment.ind);
+        return Objects.equals(id, payment.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(ind);
+        return Objects.hashCode(id);
     }
 }
